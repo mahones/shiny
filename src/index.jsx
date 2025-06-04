@@ -6,6 +6,8 @@ import Home from "./pages/Home"
 import Survey from "./pages/Survey/Survey"
 import Header from "./components/Header"
 // on ajoute les composants
+import ClientForm from "./components/ClientForm"
+import FreelanceForm from "./components/FreelanceForm"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
@@ -14,7 +16,11 @@ root.render(
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/survey" element={<Survey />}/>
+        <Route path="/survey" element={<Survey />}>
+        {/* Ajouton les les éléments sous */}
+          <Route path="client" element={<ClientForm />} />
+          <Route path="freelance" element={<FreelanceForm />} />  
+        </Route>
       </Routes>
     </Router>
   </React.StrictMode>,
