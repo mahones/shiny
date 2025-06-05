@@ -7,9 +7,11 @@ function Header() {
         <Link to="/" className="text-2xl font-bold">
           Accueil
         </Link>
-        <Link to="/survey" className="text-2xl font-bold">
+        <Link to="/survey/1" className="text-2xl font-bold">
           survey
         </Link>
+        {/* <Link to="/resultas">Résultas</Link> */}
+        <Link to="/freelances">Freelances</Link>
       </nav>
     </header>
   )
