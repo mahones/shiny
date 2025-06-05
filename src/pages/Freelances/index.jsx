@@ -22,8 +22,11 @@ const freelanceProfiles = [
 
 function Freelances() {
   return (
-    <div>
-      <h1>Liste des freelances</h1>
+    <FreelancesStyle>
+      <Paragraph>
+        Chez Shiny nous réunissons les meilleurs profils pour vous.
+      </Paragraph>
+      <h1>Trouvez votre prestataire</h1>
       <CardsContainer>
         {freelanceProfiles.map((profile, index) => (
           <Card
@@ -34,13 +37,24 @@ function Freelances() {
           />
         ))}
       </CardsContainer>
-    </div>
+    </FreelancesStyle>
   )
 }
 const CardsContainer = styled.div`
   display: grid;
-  gap: 24px;
-  grid-template-rows: 350px 350px;
+  gap: 40px;
+  grid-template-rows: 300px 300px;
   grid-template-columns: repeat(2, 1fr);
+`
+const FreelancesStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  padding-left: 300px;
+  padding-right: 300px;
+`
+const Paragraph = styled.p`
+  font-size: 20px;
 `
 export default Freelances
