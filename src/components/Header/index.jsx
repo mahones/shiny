@@ -15,15 +15,20 @@ const StyleLink = styled(Link)`
     props.$isFullLink &&
     `color: white; border-radius: 30px; background-color: ${colors.primary};`}
 `
+const StyleLinkImage = styled(Link)`
+  margin: 0;
+  padding: 0;
+`
 
 function Header() {
   return (
     <HeaderWrapper>
       <HeaderContent>
-        <Logo src={LogoDark} alt="Ynov Logo" />
+        <StyleLinkImage to="/">
+          <Logo src={LogoDark} alt="Ynov Logo" />
+        </StyleLinkImage>
         <Nav>
           <StyleLink to="/">Accueil</StyleLink>
-          <StyleLink to="/survey/1">Survey</StyleLink>
           {/* <StyleLink to="/resultas">Résultas</StyleLink> */}
           <StyleLink to="/freelances">Profiles</StyleLink>
           <StyleLink to="/survey/1" $isFullLink>

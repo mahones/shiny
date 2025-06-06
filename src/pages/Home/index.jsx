@@ -1,5 +1,6 @@
-import { useState } from "react"
 import styled from "styled-components"
+import colors from "../../Colors"
+import Resume from "../../assets/undraw_Resume_re_hkth.svg"
 
 const HomeContainer = styled.div`
   width: 100%;
@@ -9,18 +10,50 @@ const HomeContainer = styled.div`
   padding: 20px;
 `
 const Baloon = styled.div`
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: #5843e4;
-  transform: scale(${({size}) => size});
+  padding: 70px;
+  display: flex;
+  gap: 20px;
+  width: auto;
+  height: auto;
+  background-color: ${colors.backgroundDark2};
+  h2 {
+    color: ${colors.textLight};
+    font-size: 50px;
+    line-height: 1.6;
+  }
+  button {
+    background-color: ${colors.primary};
+    color: ${colors.textLight};
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    &:hover {
+      background-color: ${colors.backgroundDark};
+    }
+  }
+ 
+   
 `
 function Home() {
-const [size, setSize] = useState(1)
   return (
     <HomeContainer>
-      <h1 onClick={()=>setSize(size + 0.1)}>Accueil</h1>
-      <Baloon size={size}/>
+      <Baloon>
+        <div>
+          <h2>
+            Repérez vos besoins,
+            <br />
+            on s’occupe du reste, <br /> avec les meilleurs talents
+          </h2>
+          <button onClick={() => window.location.href = "/survey/1"}>
+            Faire un test
+          </button>
+        </div>
+        <div>
+          <img src={Resume} alt="Résumé-image" />
+        </div>
+      </Baloon>
     </HomeContainer>
   )
 }
