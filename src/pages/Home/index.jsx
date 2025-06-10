@@ -2,6 +2,7 @@ import styled from "styled-components"
 import colors from "../../Colors"
 import Resume from "../../assets/undraw_Resume_re_hkth.svg"
 
+// styled-components
 const HomeContainer = styled.div`
   width: 100%;
   display: flex;
@@ -33,9 +34,8 @@ const Baloon = styled.div`
       background-color: ${colors.backgroundDark};
     }
   }
- 
-   
 `
+// home-components
 function Home() {
   return (
     <HomeContainer>

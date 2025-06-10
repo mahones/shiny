@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Trebuchet MS', Helvetica, sans-serif;
     }
 `
-
+// on crée le root et on rend l'application
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
   <React.StrictMode>

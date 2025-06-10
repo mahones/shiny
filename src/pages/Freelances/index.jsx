@@ -1,7 +1,7 @@
 import DefaultPicture from "../../assets/profile.png"
 import Card from "../../components/Card"
 import styled from "styled-components"
-
+// Freelance profiles data
 const freelanceProfiles = [
   {
     name: "Jane Doe",
@@ -19,7 +19,25 @@ const freelanceProfiles = [
     picture: DefaultPicture,
   },
 ]
-
+// styled-components
+const CardsContainer = styled.div`
+  display: grid;
+  gap: 40px;
+  grid-template-rows: 300px 300px;
+  grid-template-columns: repeat(2, 1fr);
+`
+const FreelancesStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  padding-left: 300px;
+  padding-right: 300px;
+`
+const Paragraph = styled.p`
+  font-size: 20px;
+`
+// Freelances component
 function Freelances() {
   return (
     <FreelancesStyle>
@@ -40,21 +58,5 @@ function Freelances() {
     </FreelancesStyle>
   )
 }
-const CardsContainer = styled.div`
-  display: grid;
-  gap: 40px;
-  grid-template-rows: 300px 300px;
-  grid-template-columns: repeat(2, 1fr);
-`
-const FreelancesStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-  padding-left: 300px;
-  padding-right: 300px;
-`
-const Paragraph = styled.p`
-  font-size: 20px;
-`
+
 export default Freelances

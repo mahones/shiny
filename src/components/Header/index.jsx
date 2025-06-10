@@ -3,7 +3,7 @@ import styled from "styled-components"
 import colors from "../../Colors"
 import LogoDark from "../../assets/shiny-logo_shiny-logo-dark.png"
 // import LogoLight from "../../assets/shiny-logo_shiny-logo-light.png"
-
+// styled-components
 const StyleLink = styled(Link)`
   padding: 8px;
   color: ${colors.textLight};
@@ -19,27 +19,6 @@ const StyleLinkImage = styled(Link)`
   margin: 0;
   padding: 0;
 `
-
-function Header() {
-  return (
-    <HeaderWrapper>
-      <HeaderContent>
-        <StyleLinkImage to="/">
-          <Logo src={LogoDark} alt="Ynov Logo" />
-        </StyleLinkImage>
-        <Nav>
-          <StyleLink to="/">Accueil</StyleLink>
-          {/* <StyleLink to="/resultas">Résultas</StyleLink> */}
-          <StyleLink to="/freelances">Profiles</StyleLink>
-          <StyleLink to="/survey/1" $isFullLink>
-            Faire un test
-          </StyleLink>
-        </Nav>
-      </HeaderContent>
-    </HeaderWrapper>
-  )
-}
-
 const HeaderWrapper = styled.header`
   background-color: ${colors.backgroundDark};
   color: ${colors.textLight};
@@ -63,5 +42,27 @@ const Logo = styled.img`
   height: 50px;
   width: auto;
 `
+
+// Header component
+function Header() {
+  return (
+    <HeaderWrapper>
+      <HeaderContent>
+        <StyleLinkImage to="/">
+          <Logo src={LogoDark} alt="Ynov Logo" />
+        </StyleLinkImage>
+        <Nav>
+          <StyleLink to="/">Accueil</StyleLink>
+          {/* <StyleLink to="/resultas">Résultas</StyleLink> */}
+          <StyleLink to="/freelances">Profiles</StyleLink>
+          <StyleLink to="/survey/1" $isFullLink>
+            Faire un test
+          </StyleLink>
+        </Nav>
+      </HeaderContent>
+    </HeaderWrapper>
+  )
+}
+
 
 export default Header

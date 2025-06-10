@@ -1,21 +1,7 @@
 import styled from "styled-components"
 import ErrorImage from "../../assets/undraw_page_not_found_su7k.svg"
 import colors from "../../Colors"
-function Error() {
-  return (
-    <ErrorBody>
-        <ErrorContainer>
-      <ErrorTitle>Oups...</ErrorTitle>
-      <ErrorImageStyled src={ErrorImage} alt="Page not found" />
-      <ErrorText>
-        Il semblerait que la page que vous cherchez n’existe pas
-      </ErrorText>
-    </ErrorContainer>
-    </ErrorBody>
-    
-  )
-}
-
+// styled-components
 const ErrorContainer = styled.div`
   width: 100%;
   display: flex;
@@ -40,4 +26,21 @@ const ErrorBody = styled.h2`
   margin-right: 300px;
   margin-left: 300px;
 `
+// Error component
+function Error() {
+  return (
+    <ErrorBody>
+        <ErrorContainer>
+      <ErrorTitle>Oups...</ErrorTitle>
+      <ErrorImageStyled src={ErrorImage} alt="Page not found" />
+      <ErrorText>
+        Il semblerait que la page que vous cherchez n’existe pas
+      </ErrorText>
+    </ErrorContainer>
+    </ErrorBody>
+    
+  )
+}
+
+
 export default Error
