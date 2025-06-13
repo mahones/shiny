@@ -8,7 +8,10 @@ import Header from "./components/Header"
 import Error from "./components/Error"
 import Freelances from "./pages/Freelances"
 import Resultats from "./pages/Resultats"
+import Footer from "./components/Footer"
 import { createGlobalStyle } from "styled-components"
+import { ThemeProvider, SurveyProvider } from "./utils/context"
+
 // on ajoute les couleurs
 import colors from "./Colors"
 
@@ -29,16 +32,21 @@ const GlobalStyle = createGlobalStyle`
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
   <React.StrictMode>
-    <Router>
-      <GlobalStyle />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/survey/:questionNumber" element={<Survey />} />
-        <Route path="/freelances" element={<Freelances />} />
-        <Route path="/resultas" element={<Resultats />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <SurveyProvider>
+        <Router>
+          <GlobalStyle />
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/survey/:questionNumber" element={<Survey />} />
+            <Route path="/freelances" element={<Freelances />} />
+            <Route path="/resultas" element={<Resultats />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </SurveyProvider>
+    </ThemeProvider>
   </React.StrictMode>,
 )

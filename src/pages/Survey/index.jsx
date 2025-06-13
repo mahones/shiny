@@ -2,8 +2,16 @@ import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import colors from "../../Colors"
+import { useContext, useState, useEffect } from "react"
+import { Loader } from "../../utils/Atoms"
+import { SurveyContext } from "../../utils/context"
 
 // styled-components
+const SurveyContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 const QuestionWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -27,22 +35,29 @@ const QuestionContainer = styled.div`
       &:hover {
         color: ${colors.primary};
       }
-    
     }
   }
 `
 const QuestionButton = styled.button`
-      background-color: ${colors.backgroundDark2};
-      color: ${colors.textLight};
-      padding:  30px 70px 30px 70px;
-      border: none;
-      border-radius: 5px;
-      font-size: 20px;
-      cursor: pointer;
-      &:hover {
-          background-color: ${colors.backgroundDark};
-          border: 1px solid ${colors.primary};
-        }
+  background-color: ${colors.backgroundDark2};
+  color: ${colors.textLight};
+  padding: 30px 70px 30px 70px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: ${(props) =>
+    props.isSelected ? `0px 0px 0px 2px ${colors.primary} inset` : 'none'};
+  &:first-child {
+    margin-right: 15px;
+  }
+  &:last-of-type {
+    margin-left: 15px;
+  }
+  &:hover {
+    background-color: ${colors.backgroundDark};
+    border: 1px solid ${colors.primary};
+  }
 `
 // Survey component
 function Survey() {
@@ -50,30 +65,59 @@ function Survey() {
   const questionNumberInt = parseInt(questionNumber)
   const prevQuestionNumber = questionNumberInt === 1 ? 1 : questionNumber - 1
   const nextQuestionNumber = questionNumberInt + 1
+  const [surveyData, setSurveyData] = useState({})
+  const [dataloading, setDataloading] = useState(false)
+  const { saveAnswers, answers } = useContext(SurveyContext)
+
+  function saveReply(answer) {
+    saveAnswers({ [questionNumber]: answer })
+  }
+
+
+  // Questionner mon api
+   useEffect(() => {
+    async function fetchSurveyData() {
+      setDataloading(true)
+      // Simulate fetching data from an API
+      try {
+        const response = await fetch("http://localhost:8000/survey")
+        const {surveyData} = await response.json()
+        setSurveyData(surveyData)
+      } catch (error) {
+        console.error("Error fetching survey data:", error)
+      } finally {
+        setDataloading(false)
+      }
+    }
+    fetchSurveyData()
+  }, [])
+
   return (
-    <QuestionWrapper>
+    <SurveyContainer>
+      <QuestionWrapper>
       <QuestionContainer>
         <h1>Question {questionNumber}</h1>
-        <p>
-          Votre application doit-elle impérativement apparaître en premier dans
-          les résultats de recherche ?
-        </p>
+        {dataloading ? <Loader /> : <p>{surveyData[questionNumber]}</p>}
         <div>
-          <QuestionButton>Oui</QuestionButton>
-          <QuestionButton>Non</QuestionButton>
+          <QuestionButton onClick={() => saveReply(true)}
+            isSelected={answers[questionNumber] === true}>Oui</QuestionButton>
+          <QuestionButton onClick={() => saveReply(false)}
+            isSelected={answers[questionNumber] === false}>Non</QuestionButton>
         </div>
         <div>
           <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>
-          {questionNumberInt === 10 ? (
-            <Link to={`/resultas`}>Résultat</Link>
-          ) : (
+          {surveyData[questionNumberInt + 1] ? (
             <Link to={`/survey/${nextQuestionNumber}`}>Suivant</Link>
+          ) : (
+            <Link to={`/resultas`}>Résultat</Link>
           )}
         </div>
       </QuestionContainer>
     </QuestionWrapper>
+    </SurveyContainer> 
+
+    
   )
 }
-
 
 export default Survey
