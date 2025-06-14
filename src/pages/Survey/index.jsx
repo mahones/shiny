@@ -5,6 +5,7 @@ import colors from "../../Colors"
 import { useContext, useState, useEffect } from "react"
 import { Loader } from "../../utils/Atoms"
 import { SurveyContext } from "../../utils/context"
+import { useFetch } from "../../utils/hooks"
 
 // styled-components
 const SurveyContainer = styled.div`
@@ -47,7 +48,7 @@ const QuestionButton = styled.button`
   font-size: 20px;
   cursor: pointer;
   box-shadow: ${(props) =>
-    props.isSelected ? `0px 0px 0px 2px ${colors.primary} inset` : 'none'};
+    props.isSelected ? `0px 0px 0px 2px ${colors.primary} inset` : "none"};
   &:first-child {
     margin-right: 15px;
   }
@@ -65,7 +66,7 @@ function Survey() {
   const questionNumberInt = parseInt(questionNumber)
   const prevQuestionNumber = questionNumberInt === 1 ? 1 : questionNumber - 1
   const nextQuestionNumber = questionNumberInt + 1
-  const [surveyData, setSurveyData] = useState({})
+  // const [surveyData, setSurveyData] = useState({})
   const [dataloading, setDataloading] = useState(false)
   const { saveAnswers, answers } = useContext(SurveyContext)
 
@@ -73,50 +74,58 @@ function Survey() {
     saveAnswers({ [questionNumber]: answer })
   }
 
-
   // Questionner mon api
-   useEffect(() => {
-    async function fetchSurveyData() {
-      setDataloading(true)
-      // Simulate fetching data from an API
-      try {
-        const response = await fetch("http://localhost:8000/survey")
-        const {surveyData} = await response.json()
-        setSurveyData(surveyData)
-      } catch (error) {
-        console.error("Error fetching survey data:", error)
-      } finally {
-        setDataloading(false)
-      }
-    }
-    fetchSurveyData()
-  }, [])
+  //  useEffect(() => {
+  //   async function fetchSurveyData() {
+  //     setDataloading(true)
+  //     // Simulate fetching data from an API
+  //     try {
+  //       const response = await fetch("http://localhost:8000/survey")
+  //       const {surveyData} = await response.json()
+  //       setSurveyData(surveyData)
+  //     } catch (error) {
+  //       console.error("Error fetching survey data:", error)
+  //     } finally {
+  //       setDataloading(false)
+  //     }
+  //   }
+  //   fetchSurveyData()
+  // }, [])
+  const { isLoading, data } = useFetch("http://localhost:8000/survey")
+  useEffect(() => {
+    setDataloading(isLoading)
+  }, [isLoading])
+  const { surveyData = {} } = data || {}
 
   return (
     <SurveyContainer>
       <QuestionWrapper>
-      <QuestionContainer>
-        <h1>Question {questionNumber}</h1>
-        {dataloading ? <Loader /> : <p>{surveyData[questionNumber]}</p>}
-        <div>
-          <QuestionButton onClick={() => saveReply(true)}
-            isSelected={answers[questionNumber] === true}>Oui</QuestionButton>
-          <QuestionButton onClick={() => saveReply(false)}
-            isSelected={answers[questionNumber] === false}>Non</QuestionButton>
-        </div>
-        <div>
-          <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>
-          {surveyData[questionNumberInt + 1] ? (
-            <Link to={`/survey/${nextQuestionNumber}`}>Suivant</Link>
-          ) : (
-            <Link to={`/resultas`}>Résultat</Link>
-          )}
-        </div>
-      </QuestionContainer>
-    </QuestionWrapper>
-    </SurveyContainer> 
-
-    
+        <QuestionContainer>
+          <h1>Question {questionNumber}</h1>
+          {dataloading ? <Loader /> : <p>{surveyData[questionNumber]}</p>}
+          <div>
+            <QuestionButton
+              onClick={() => saveReply(true)}
+              isSelected={answers[questionNumber] === true}>
+              Oui
+            </QuestionButton>
+            <QuestionButton
+              onClick={() => saveReply(false)}
+              isSelected={answers[questionNumber] === false}>
+              Non
+            </QuestionButton>
+          </div>
+          <div>
+            <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>
+            {surveyData[questionNumberInt + 1] ? (
+              <Link to={`/survey/${nextQuestionNumber}`}>Suivant</Link>
+            ) : (
+              <Link to={`/resultas`}>Résultat</Link>
+            )}
+          </div>
+        </QuestionContainer>
+      </QuestionWrapper>
+    </SurveyContainer>
   )
 }
 
