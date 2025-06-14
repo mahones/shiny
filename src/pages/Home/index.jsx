@@ -1,8 +1,9 @@
+// Importation des dépendances nécessaires
 import styled from "styled-components"
 import colors from "../../Colors"
 import Resume from "../../assets/undraw_Resume_re_hkth.svg"
 
-// styled-components
+// Définition du style du conteneur principal de la page d'accueil
 const HomeContainer = styled.div`
   width: 100%;
   display: flex;
@@ -10,6 +11,7 @@ const HomeContainer = styled.div`
   flex-direction: column;
   padding: 20px;
 `
+// Style de la bulle principale contenant le texte et l'image
 const Baloon = styled.div`
   padding: 70px;
   display: flex;
@@ -35,22 +37,25 @@ const Baloon = styled.div`
     }
   }
 `
-// home-components
+// Composant principal Home pour la page d'accueil
 function Home() {
   return (
     <HomeContainer>
       <Baloon>
         <div>
+          {/* Texte d'accroche */}
           <h2>
             Repérez vos besoins,
             <br />
             on s’occupe du reste, <br /> avec les meilleurs talents
           </h2>
-          <button onClick={() => window.location.href = "/survey/1"}>
+          {/* Bouton pour démarrer le test */}
+          <button onClick={() => (window.location.href = "/survey/1")}>
             Faire un test
           </button>
         </div>
         <div>
+          {/* Image illustrative */}
           <img src={Resume} alt="Résumé-image" />
         </div>
       </Baloon>
@@ -58,4 +63,5 @@ function Home() {
   )
 }
 
+// Exportation du composant Home
 export default Home

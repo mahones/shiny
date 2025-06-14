@@ -1,3 +1,79 @@
+# Shiny Agency
+
+Projet React intermédiaire — OpenClassrooms
+
+## Présentation
+
+Shiny Agency est une application web développée en React permettant de :
+
+- Réaliser un test pour déterminer les besoins d’un projet web
+- Consulter une liste de freelances avec leurs profils
+- Naviguer entre différentes pages (accueil, test, résultats, profils)
+- Changer le thème (clair/sombre)
+
+L’application utilise une API locale pour récupérer les questions du test, les résultats et les profils freelances.
+
+## Fonctionnalités principales
+
+- **Accueil** : Présentation et accès rapide au test
+- **Test (Survey)** : Questionnaire dynamique, navigation entre les questions, sauvegarde des réponses
+- **Résultats** : Affichage des compétences recommandées selon les réponses
+- **Freelances** : Liste de profils freelances récupérés via l’API
+- **Thème** : Changement de mode clair/sombre via le footer
+- **Gestion des erreurs** : Affichage d’une page personnalisée en cas de route inconnue
+
+## Structure du projet
+
+```
+shiny-agency/
+├── public/
+├── src/
+│   ├── assets/           # Images et illustrations
+│   ├── components/       # Composants réutilisables (Header, Footer, Card, Error...)
+│   ├── mesapis/          # Données mockées (si besoin)
+│   ├── pages/            # Pages principales (Home, Survey, Freelances, Resultats)
+│   ├── styles/           # Fichiers CSS globaux
+│   ├── utils/            # Hooks, contextes, styles globaux, Atoms
+│   └── Colors.js         # Palette de couleurs
+├── package.json
+└── README.md
+```
+
+## Installation et lancement
+
+1. **Cloner le projet**
+   ```bash
+   git clone <url-du-repo>
+   cd shiny-agency
+   ```
+2. **Installer les dépendances**
+   ```bash
+   npm install
+   ```
+3. **Lancer l’API locale**
+   - Assurez-vous que l’API (backend) est bien démarrée sur `http://localhost:8000`.
+   - Suivez les instructions du projet backend fourni par OpenClassrooms si besoin.
+4. **Démarrer l’application React**
+   ```bash
+   npm start
+   ```
+   L’application sera accessible sur [http://localhost:3000](http://localhost:3000)
+
+## Technologies utilisées
+
+- React 19
+- React Router DOM 7
+- styled-components
+- API REST locale (Node.js/Express fournie par OpenClassrooms)
+
+## Auteur
+
+Projet réalisé dans le cadre du parcours OpenClassrooms — Développeur Frontend React.
+
+---
+
+N’hésitez pas à adapter ce README selon vos besoins ou à ajouter des sections (tests, déploiement, etc.) si nécessaire.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -12,59 +88,4 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You may also see any
