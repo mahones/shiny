@@ -91,11 +91,14 @@ function Survey() {
   //   }
   //   fetchSurveyData()
   // }, [])
-  const { isLoading, data } = useFetch("http://localhost:8000/survey")
+  const { isLoading, data, error } = useFetch("http://localhost:8000/survey")
   useEffect(() => {
     setDataloading(isLoading)
   }, [isLoading])
   const { surveyData = {} } = data || {}
+  if (error) {
+    return <span>Il y a un problème</span>
+  }
 
   return (
     <SurveyContainer>
