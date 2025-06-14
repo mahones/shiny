@@ -1,7 +1,7 @@
 // import DefaultPicture from "../../assets/profile.png"
 import Card from "../../components/Card"
 import styled from "styled-components"
-import { useState, useEffect } from "react"
+import { useFetch } from "../../utils/hooks"
 import { Loader } from "../../utils/Atoms"
 // Freelance profiles data
 // const freelanceProfiles = [
@@ -41,32 +41,22 @@ const Paragraph = styled.p`
 `
 // Freelances component
 function Freelances() {
-  const [loading, setLoading] = useState(false)
-  const [apiFreelanceProfiles, setFreelanceProfiles] = useState([])
+  const { isLoading, data, error } = useFetch(
+    "http://localhost:8000/freelances",
+  )
+  const apiFreelanceProfiles = data?.freelancersList || []
 
-  useEffect(() => {
-    async function fetchFreelancers() {
-      setLoading(true)
-      try {
-        const response = await fetch("http://localhost:8000/freelances")
-        const data = await response.json()
-        // L'API retourne { freelancersList: [...] }
-        setFreelanceProfiles(data.freelancersList || [])
-      } catch (error) {
-        console.error("Error fetching freelancers:", error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchFreelancers()
-  }, [])
+  if (error) {
+    return <span>Erreur lors du chargement des freelances.</span>
+  }
+
   return (
     <FreelancesStyle>
       <Paragraph>
         Chez Shiny nous réunissons les meilleurs profils pour vous.
       </Paragraph>
       <h1>Trouvez votre prestataire</h1>
-      {loading ? (
+      {isLoading ? (
         <Loader />
       ) : (
         <CardsContainer>
